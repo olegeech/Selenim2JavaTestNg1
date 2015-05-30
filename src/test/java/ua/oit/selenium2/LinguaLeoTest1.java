@@ -13,6 +13,7 @@ import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 /**
  * Created by Oleg on 30.05.2015.
  * Change 1
+ *
  */
 public class LinguaLeoTest1 extends TestNgTestBase {
     private boolean acceptNextAlert = true;
