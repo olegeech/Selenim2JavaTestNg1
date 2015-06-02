@@ -15,7 +15,7 @@ import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
  * Change 1
  *
  */
-public class LinguaLeoTest1 extends TestNgTestBase {
+public class LinguaLeoTest1 extends TestBase {
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
 

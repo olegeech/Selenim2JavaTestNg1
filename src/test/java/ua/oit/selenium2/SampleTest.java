@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import ua.oit.selenium2.pages.HomePage;
 
-public class SampleTestNgTest extends TestNgTestBase {
+public class SampleTest extends TestBase {
 
   private HomePage homepage;
 
@@ -17,7 +17,7 @@ public class SampleTestNgTest extends TestNgTestBase {
     homepage = PageFactory.initElements(driver, HomePage.class);
   }
 
-  @Test
+  //@Test
   public void testHomePageHasAHeader() {
     driver.get(baseUrl);
     Assert.assertFalse("".equals(homepage.header.getText()));

@@ -17,7 +17,7 @@ import ua.oit.selenium2.util.PropertyLoader;
 /**
  * Base class for TestNG-based test classes
  */
-public class TestNgTestBase {
+public class TestBase {
 
   protected static String gridHubUrl;
   protected static String baseUrl;
