@@ -7,10 +7,11 @@ import org.openqa.selenium.WebElement;
 /**
  * Created by Oleg on 30.05.2015.
  */
-public class LinguaLeoRegisterPage {
+public class LinguaLeoRegisterPage extends Page {
     private final WebDriver driver;
 
     public LinguaLeoRegisterPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
 
 /*        // Check that we're on the right page.

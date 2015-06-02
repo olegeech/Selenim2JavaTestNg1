@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Capabilities;
 
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
@@ -30,8 +29,11 @@ public class TestBase {
   @BeforeSuite
   public void initTestSuite() throws IOException {
     baseUrl = PropertyLoader.loadProperty("site.url");
+    if ("".equals(baseUrl) | "${grid.url}".equals(baseUrl)) {
+      baseUrl = null;
+    }
     gridHubUrl = PropertyLoader.loadProperty("grid.url");
-    if ("".equals(gridHubUrl)) {
+    if ("".equals(gridHubUrl) | "${grid.url}".equals(gridHubUrl)) {
       gridHubUrl = null;
     }
     capabilities = PropertyLoader.loadCapabilities();
