@@ -2,6 +2,7 @@ package ua.oit.selenium2.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  * Created by Oleg on 30.05.2015.
@@ -22,9 +23,10 @@ public class LinguaLeoRegisterPage {
     By emailLocator = By.id("r_email");
 
     public LinguaLeoRegisterPage typeEmail(String email) {
-        driver.findElement(emailLocator).click();
-        driver.findElement(emailLocator).clear();
-        driver.findElement(emailLocator).sendKeys(email);
+        WebElement emailField = driver.findElement(emailLocator);
+        emailField.click();
+        emailField.clear();
+        emailField.sendKeys(email);
 
         return this;
     }

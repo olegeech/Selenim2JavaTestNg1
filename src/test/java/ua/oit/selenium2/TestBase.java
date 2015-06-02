@@ -41,7 +41,7 @@ public class TestBase {
   @BeforeMethod
   public void initWebDriver() {
     driver = WebDriverFactory.getDriver(gridHubUrl, capabilities);
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
   }
 
   @AfterSuite(alwaysRun = true)

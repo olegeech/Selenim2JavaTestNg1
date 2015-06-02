@@ -3,6 +3,7 @@ package ua.oit.selenium2;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -37,9 +38,10 @@ public class LinguaLeoTest1 extends TestBase {
         registrationpage.typeEmail(email);
 
         //TODO refactor this code below
-        driver.findElement(By.id("r_password")).click();
-        driver.findElement(By.id("r_password")).clear();
-        driver.findElement(By.id("r_password")).sendKeys("6512381");
+        WebElement passwordField = driver.findElement(By.id("r_password"));
+        passwordField.click();
+        passwordField.clear();
+        passwordField.sendKeys("6512381");
         //driver.findElement(By.xpath("//input[@value='Создать аккаунт']")).click();
         driver.findElement(By.xpath("//input[@class='btn-upper-orange btn-big au-form__btn']")).click();
         assertTrue(isElementPresent(By.cssSelector("div.dash-intro__greeting.clearfix")));

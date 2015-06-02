@@ -64,6 +64,19 @@
   </build>
   <!-- profiles -->
   <profiles>
+    <profile>
+      <id>saucelabs</id>
+      <properties>
+        <!--<site.url>https://lingualeo.com/</site.url>
+        <user.username></user.username>
+        <user.password></user.password>
+        <browser.version></browser.version>
+        <browser.platform></browser.platform>
+        -->
+        <grid.url>http://Olegeech:8f12fb3d-a406-47f5-8dd6-8f02a8124c64@ondemand.saucelabs.com:80/wd/hub</grid.url>
+        <capabilities>/firefox.capabilities</capabilities>
+      </properties>
+    </profile>
     <!-- browsers -->
     <profile>
       <id>firefox</id>
@@ -151,7 +164,7 @@
     <profile>
       <id>grid</id>
       <properties>
-        <grid.url>http://localhost:4444/wd/hub/</grid.url>
+        <grid.url>http://Olegeech:8f12fb3d-a406-47f5-8dd6-8f02a8124c64@ondemand.saucelabs.com:80/wd/hub/</grid.url>
       </properties>
     </profile>
   </profiles>

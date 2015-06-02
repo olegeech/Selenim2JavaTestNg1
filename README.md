@@ -1,2 +1,2 @@
 # Selenim2JavaTestNg1
-Template 1 for Selenium2 running with TesNg
+If you would like run this tests on Chrome or IE, please ensure that you have "chromedriver.exe" and "IEDriverServer.exe" in your PATH environment.
