@@ -28,7 +28,7 @@ public class LinguaLeoTest1 extends TestBase {
     }
 
     @Test
-    public void testLingvaleoRegister1() throws InterruptedException {
+    public void testLingvaleoRegister1() throws Exception {
         //TODO: remove InterruptedException and add Explicit and Implicit Waits (http://www.seleniumhq.org/docs/04_webdriver_advanced.jsp)
         baseUrl = "https://lingualeo.com/register";
         String email = "vitalyachief+30@gmail.com";
@@ -38,12 +38,10 @@ public class LinguaLeoTest1 extends TestBase {
 
         //TODO refactor this code below
         driver.findElement(By.id("r_password")).click();
-        Thread.sleep(1000); //TODO заменить на wait for element
         driver.findElement(By.id("r_password")).clear();
         driver.findElement(By.id("r_password")).sendKeys("6512381");
         //driver.findElement(By.xpath("//input[@value='Создать аккаунт']")).click();
         driver.findElement(By.xpath("//input[@class='btn-upper-orange btn-big au-form__btn']")).click();
-        Thread.sleep(1000); //TODO заменить на wait for element
         assertTrue(isElementPresent(By.cssSelector("div.dash-intro__greeting.clearfix")));
         assertTrue(isElementPresent(By.cssSelector("div.dash-intro__title")));
     }
