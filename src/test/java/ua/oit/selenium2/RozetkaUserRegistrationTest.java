@@ -29,38 +29,35 @@ public class RozetkaUserRegistrationTest extends TestBase {
     public void RozetkaUserRegistrationTest() throws Exception {
         baseUrl = "https://my.rozetka.com.ua/signup/";
         String name = "testName";
-        //String dot = "."; //can be random or datetime...
-        //String emailDomainPart = "tatarchykoleg"+dot;
         String email = "tatarchykoleg@gmail.com";
         String pwd = "testPass";
         driver.get(baseUrl);
 
         //register new user
+        isElementPresent(signupPage.signupContent);
+        setElementText(name, signupPage.nameField);
+        setElementText(email, signupPage.emailField);
+        setElementText(pwd, signupPage.pwdField);
+        clickElement(signupPage.regBtn);
 
-        //signupPage.isRightPage(signupPage.expectedPageTitle);
-        signupPage.setElementText(name, signupPage.nameField);
-        signupPage.setElementText(email, signupPage.emailField);
-        signupPage.setElementText(pwd, signupPage.pwdField);
-        signupPage.clickElement(signupPage.regBtn);
-
-        //verify if user is already exist
-        signupPage.waitForElement(signupPage.alreadyRegisteredUserMessage);
-        if (signupPage.isElementDisplayed(signupPage.alreadyRegisteredUserMessage)) {
-            String alreadyRegisteredUserMessageText = signupPage.getElementText(signupPage.alreadyRegisteredUserMessage);
-            System.out.println(alreadyRegisteredUserMessageText);
+        //verify if the user is already exist
+        waitForElement(signupPage.alreadyRegisteredUserMessage);
+        if (isElementDisplayed(signupPage.alreadyRegisteredUserMessage)) {
+            String alreadyRegisteredUserMessageText = getElementText(signupPage.alreadyRegisteredUserMessage);
+            System.out.println(" >> "+alreadyRegisteredUserMessageText+"\n");
             //TODO: tbd...
         }
 
         //verify is user can login
-        header.clickElement(header.signinLink);
-        loginPopup.setElementText(email, loginPopup.loginField);
-        loginPopup.setElementText(pwd, loginPopup.pwdAuthField);
-        loginPopup.clickElement(loginPopup.loginBtn);
+        clickElement(header.signinLink);
+        setElementText(email, loginPopup.loginField);
+        setElementText(pwd, loginPopup.pwdAuthField);
+        clickElement(loginPopup.loginBtn);
 
         //verify is user logged in
-        personalDataPage.waitForElement(personalDataPage.personalInformation);
-        //personalDataPage.isRightPage(personalDataPage.expectedPageTitle);
-        header.assertElementText(header.userNameMenu, name);
+        waitForElement(personalDataPage.personalInformationContent);
+        isElementPresent(personalDataPage.personalInformationContent);
+        assertElementText(header.userNameMenu, name);
 
     }
 
