@@ -4,6 +4,7 @@
   <test name="Test1">
     <classes>
       <class name="ua.oit.selenium2.RozetkaUserAuthorisationTests"/>
+      <class name="ua.oit.selenium2.RozetkaSearchProductsTests"/>
     </classes>
   </test>  
 </suite>

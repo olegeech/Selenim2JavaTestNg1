@@ -17,4 +17,15 @@ abstract public class Page {
         this.driver = driver;
     }
 
+
+    //TODO: move support methods from TestBase class
+    public boolean isElementPresent(WebElement e) {
+        try {
+            e.findElement(By.id(e.getTagName()));
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+    }
+
 }

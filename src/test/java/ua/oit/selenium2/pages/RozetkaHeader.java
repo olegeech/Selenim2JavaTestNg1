@@ -9,8 +9,12 @@ import org.openqa.selenium.support.FindBy;
  */
 public class RozetkaHeader {
 
-    @FindBy(name = "signin")  @CacheLookup public WebElement signinLink;
-    @FindBy(id = "user_menu")  @CacheLookup public WebElement userMenu;
-    @FindBy(name = "profile")  @CacheLookup public WebElement userNameMenu;
+    @FindBy(className = "clearfix body-header-row-bottom")
+                                @CacheLookup public WebElement headerContent;
+    @FindBy(name = "signin")    @CacheLookup public WebElement signinLink;
+    @FindBy(id = "user_menu")   @CacheLookup public WebElement userMenu;
+    @FindBy(name = "profile")   @CacheLookup public WebElement userNameMenu;
+    @FindBy(name = "text")      @CacheLookup public WebElement searchField;
+    @FindBy(name = "submit")    @CacheLookup public WebElement searchBtn;
 
 }
