@@ -1,20 +1,16 @@
 package ua.oit.selenium2.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Oleg on 02.06.2015.
  */
-public class RozetkaHeader extends Page{
+public class RozetkaHeader {
 
-    public RozetkaHeader(WebDriver driver) {
-        super(driver);
-    }
-
-    public By signinLink = By.name("signin");
-    public By userMenu = By.id("user_menu");
-    public By userNameMenu = By.name("profile");
-
+    @FindBy(name = "signin")  @CacheLookup public WebElement signinLink;
+    @FindBy(id = "user_menu")  @CacheLookup public WebElement userMenu;
+    @FindBy(name = "profile")  @CacheLookup public WebElement userNameMenu;
 
 }

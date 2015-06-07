@@ -1,20 +1,16 @@
 package ua.oit.selenium2.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Oleg on 02.06.2015.
  */
-public class RozetkaPersonalDataPage extends Page{
+public class RozetkaPersonalDataPage {
 
-    public RozetkaPersonalDataPage(WebDriver driver) {
-        super(driver);
-    }
-
-    public By personalInformationContent = By.id("personal_information_content");
-    public By personalInformation = By.id("personal_information");
-    public By profileInfoEmail = By.className("profile-info-l-i");
-
+    @FindBy(id = "personal_information_content")  @CacheLookup public WebElement personalInformationContent;
+    @FindBy(id = "personal_information")  @CacheLookup public WebElement personalInformation;
+    @FindBy(className = "profile-info-l-i")  @CacheLookup public WebElement profileInfoEmail;
 
 }

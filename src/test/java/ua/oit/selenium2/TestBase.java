@@ -29,7 +29,7 @@ public class TestBase {
     protected WebDriver driver;
 
     private boolean acceptNextAlert = true;
-    private StringBuffer verificationErrors = new StringBuffer();
+    //private StringBuffer verificationErrors = new StringBuffer();
 
     @BeforeSuite
     public void initTestSuite() throws IOException {
@@ -62,8 +62,7 @@ public class TestBase {
      * This is functions library below
      *
      */
-    public void setElementText(String name, By element) {
-        WebElement e = driver.findElement(element);
+    public void setElementText(String name, WebElement e) {
         e.click();
         e.clear();
         e.sendKeys(name);
@@ -85,8 +84,7 @@ public class TestBase {
         }
     }
 
-    public void clickElement(By element) {
-        WebElement e = driver.findElement(element);
+    public void clickElement(WebElement e) {
         e.click();
     }
 
@@ -95,49 +93,45 @@ public class TestBase {
         e.attribute;
     }*/
 
-    public String getElementText(By element) {
-        WebElement e = driver.findElement(element);
+    public String getElementText(WebElement e) {
         String text = e.getText();
         return text;
     }
 
-    public void waitForElement(By element) {
-        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(element));
+    public void waitForElement(WebElement e) {
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(e));
     }
 
     public void waitForPageToLoad() {
         driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.SECONDS);
     }
 
-    public boolean isElementDisplayed(By element) {
-        WebElement e = driver.findElement(element);
+    public boolean isElementDisplayed(WebElement e) {
         boolean isDisplayed = e.isDisplayed();
         return isDisplayed;
     }
 
-    public void getElementAttribute(By element) {
-        WebElement e = driver.findElement(element);
-        e.getAttribute(String.valueOf(element));
+    public String getElementAttribute(WebElement e) {
+        String text = e.getAttribute(String.valueOf(e));
+        return text;
     }
 
-    public boolean isElementPresent(By locator) {
+    public boolean isElementPresent(WebElement e) {
         try {
-            driver.findElement(locator);
+            e.findElement(By.id(e.getTagName()));
             return true;
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException ex) {
             return false;
         }
     }
 
-    public void assertElementText(By element, String expectedText) {
-        String actualElementText = getElementText(element);
+    public void assertElementText(WebElement e, String expectedText) {
+        String actualElementText = getElementText(e);
         if (!actualElementText.equals(expectedText)) {
-            // Alternatively, we could navigate to the login page, perhaps logging out first
             throw new IllegalStateException(
-                    "\n >> Web element: "+element+
+                    "\n >> Web element: "+e+
                     "\n >> Expected text of the element: "+expectedText+
                     "\n >> Actual text of the element: "+actualElementText);
-            //System.out.printf("This is: %s page%n", actualPageTitle);
         }
     }
 

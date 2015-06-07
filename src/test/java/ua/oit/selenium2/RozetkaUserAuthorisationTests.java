@@ -3,15 +3,12 @@ package ua.oit.selenium2;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ua.oit.selenium2.pages.RozetkaHeader;
-import ua.oit.selenium2.pages.RozetkaPersonalDataPage;
-import ua.oit.selenium2.pages.RozetkaPopupAuth;
-import ua.oit.selenium2.pages.RozetkaSignupPage;
+import ua.oit.selenium2.pages.*;
 
 /**
  * Created by Oleg on 02.06.2015.
  */
-public class RozetkaUserRegistrationTest extends TestBase {
+public class RozetkaUserAuthorisationTests extends TestBase {
     private RozetkaSignupPage signupPage;
     private RozetkaHeader header;
     private RozetkaPopupAuth loginPopup;
@@ -41,9 +38,9 @@ public class RozetkaUserRegistrationTest extends TestBase {
         clickElement(signupPage.regBtn);
 
         //verify if the user is already exist
-        waitForElement(signupPage.alreadyRegisteredUserMessage);
-        if (isElementDisplayed(signupPage.alreadyRegisteredUserMessage)) {
-            String alreadyRegisteredUserMessageText = getElementText(signupPage.alreadyRegisteredUserMessage);
+        waitForElement(signupPage.registeredUserMessage);
+        if (isElementDisplayed(signupPage.registeredUserMessage)) {
+            String alreadyRegisteredUserMessageText = getElementText(signupPage.registeredUserMessage);
             System.out.println(" >> "+alreadyRegisteredUserMessageText+"\n");
             //TODO: tbd...
         }

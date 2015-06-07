@@ -1,24 +1,21 @@
 package ua.oit.selenium2.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Oleg on 02.06.2015.
  */
-public class RozetkaSignupPage extends Page{
+public class RozetkaSignupPage {
 
-    public RozetkaSignupPage(WebDriver driver) {
-        super(driver);
-    }
-
-    public By nameField = By.name("title");
-    public By emailField = By.name("email");
-    public By pwdField = By.name("password");
-    public By regBtn = By.xpath("//div[1]/div/div/div/div/form/div[4]/span/button");
-    public By alreadyRegisteredUserMessage = By.name("app-message");
-    public By signupContent = By.name("signup");
-
-
+    @FindBy(name = "title")         @CacheLookup public WebElement nameField;
+    @FindBy(name = "email")         @CacheLookup public WebElement emailField;
+    @FindBy(name = "password")      @CacheLookup public WebElement pwdField;
+    @FindBy(xpath = "//div[1]/div/div/div/div/form/div[4]/span/button")
+                                    @CacheLookup public WebElement regBtn;
+    @FindBy(name = "app-message")   @CacheLookup public WebElement registeredUserMessage;
+    @FindBy(name = "signup")        @CacheLookup public WebElement signupContent;
 
 }

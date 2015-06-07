@@ -3,7 +3,7 @@
 <suite name="Tests" verbose="5">
   <test name="Test1">
     <classes>
-      <class name="ua.oit.selenium2.RozetkaUserRegistrationTest"/>
+      <class name="ua.oit.selenium2.RozetkaUserAuthorisationTests"/>
     </classes>
   </test>  
 </suite>

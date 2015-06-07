@@ -1,19 +1,16 @@
 package ua.oit.selenium2.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Oleg on 02.06.2015.
  */
-public class RozetkaPopupAuth extends Page{
+public class RozetkaPopupAuth {
 
-    public RozetkaPopupAuth(WebDriver driver) {
-        super(driver);
-    }
-
-    public By loginField = By.name("login");
-    public By pwdAuthField = By.name("password");
-    public By loginBtn = By.name("auth_submit");
+    @FindBy(name = "login")        @CacheLookup public WebElement loginField;
+    @FindBy(name = "password")     @CacheLookup public WebElement pwdAuthField;
+    @FindBy(name = "auth_submit")  @CacheLookup public WebElement loginBtn;
 
 }
