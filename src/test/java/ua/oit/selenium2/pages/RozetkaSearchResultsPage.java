@@ -15,6 +15,7 @@ public class RozetkaSearchResultsPage extends Page {
     }
 
     public String searchResultsElementXpathLocator = "//div[@data-location='searchResults']";
+    public String searchResultsElementLinkXpathLocator = "//div[@class='g-i-list-middle-part']/div/a";
 
     @FindBy(className = "search-container")                   @CacheLookup public WebElement searchResultsConteiner;
     @FindBy(className = "search-result-title-text")           @CacheLookup public WebElement searchResultsTitleText;

@@ -44,9 +44,9 @@ public class RozetkaSearchProductsTests extends TestBase {
         int i = 0;
         for (WebElement e : items) {
             i++;
+            String elementLinkText = e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpathLocator)).getText();
+            System.out.println(i+". "+elementLinkText);
         }
-
         System.out.println("Number of elements: "+i);
-
     }
 }
