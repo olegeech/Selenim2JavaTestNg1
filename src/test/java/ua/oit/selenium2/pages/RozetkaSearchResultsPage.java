@@ -14,13 +14,13 @@ public class RozetkaSearchResultsPage extends Page {
         super(webDriver);
     }
 
-    public String searchResultsElementXpathLocator = "//div[@data-location='searchResults']";
-    public String searchResultsElementLinkXpathLocator = "//div[@class='g-i-list-middle-part']/div/a";
+    public String searchResultsElementXpath = "//div[@data-location='searchResults']";
+    public String searchResultsElementLinkXpath = "//div[@class='g-i-list-middle-part']/div/a";
 
     @FindBy(className = "search-container")                   @CacheLookup public WebElement searchResultsConteiner;
     @FindBy(className = "search-result-title-text")           @CacheLookup public WebElement searchResultsTitleText;
     @FindBy(className = "g-i-list available clearfix")        @CacheLookup public WebElement searchResultsElementCss;
-    //@FindBy(xpath = searchResultsElementXpathLocator)         @CacheLookup public WebElement searchResultsElementXpath;
+    //@FindBy(xpath = searchResultsElementXpath)         @CacheLookup public WebElement searchResultsElementXpath;
 
 
     public void initPage() {

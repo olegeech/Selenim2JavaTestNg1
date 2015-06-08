@@ -21,12 +21,14 @@ public class RozetkaSearchProductsTests extends TestBase {
     private RozetkaHeader header;
     private RozetkaHomePage homePage;
     private RozetkaSearchResultsPage searchResultsPage;
+    private RozetkaProductPage productPage;
 
     @BeforeMethod
     public void initPageObjects() {
         header = PageFactory.initElements(driver, RozetkaHeader.class);
         homePage = PageFactory.initElements(driver, RozetkaHomePage.class);
         searchResultsPage = PageFactory.initElements(driver, RozetkaSearchResultsPage.class);
+        productPage = PageFactory.initElements(driver, RozetkaProductPage.class);
     }
 
     @Test
@@ -40,11 +42,11 @@ public class RozetkaSearchProductsTests extends TestBase {
         //verify search results page
         Assert.assertEquals(searchResultsPage.searchResultsTitleText.getText(), productText);
         //count results on the page
-        List<WebElement> items = driver.findElements(By.xpath(searchResultsPage.searchResultsElementXpathLocator));
+        List<WebElement> items = driver.findElements(By.xpath(searchResultsPage.searchResultsElementXpath));
         int i = 0;
         for (WebElement e : items) {
             i++;
-            String elementLinkText = e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpathLocator)).getText();
+            String elementLinkText = e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpath)).getText();
             System.out.println(i+". "+elementLinkText);
         }
         System.out.println("Number of elements: "+i);
@@ -58,12 +60,12 @@ public class RozetkaSearchProductsTests extends TestBase {
         searchProduct(productText);
 
         //click on the link of EACH product and verify product Name
-        List<WebElement> items = driver.findElements(By.xpath(searchResultsPage.searchResultsElementXpathLocator));
+        List<WebElement> items = driver.findElements(By.xpath(searchResultsPage.searchResultsElementXpath));
         for (WebElement e : items) {
-            String elementLinkTextOnSearchResultsPage = e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpathLocator)).getText();
-            e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpathLocator)).click();
+            String elementLinkTextOnSearchResultsPage = e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpath)).getText();
+            e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpath)).click();
 
-            String elementLinkTextOnProductPage = driver.findElement(By.xpath("//h1[@itemprop='name']")).getText();
+            String elementLinkTextOnProductPage = driver.findElement(By.xpath(productPage.productTitleTextXpath)).getText();
             Assert.assertEquals(elementLinkTextOnSearchResultsPage, elementLinkTextOnProductPage);
             break;
         }
