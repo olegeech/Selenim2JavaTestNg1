@@ -42,7 +42,8 @@ public class RozetkaSearchProductsTests extends TestBase {
         //verify search results page
         Assert.assertEquals(searchResultsPage.searchResultsTitleText.getText(), productText);
         //count results on the page
-        List<WebElement> items = driver.findElements(By.xpath(searchResultsPage.searchResultsElementXpath));
+        List<WebElement> items = searchResultsPage.searchResultsConteiner
+                .findElements(By.xpath(searchResultsPage.searchResultsElementXpath));
         int i = 0;
         for (WebElement e : items) {
             i++;
@@ -60,12 +61,14 @@ public class RozetkaSearchProductsTests extends TestBase {
         searchProduct(productText);
 
         //click on the link of EACH product and verify product Name
-        List<WebElement> items = driver.findElements(By.xpath(searchResultsPage.searchResultsElementXpath));
+        List<WebElement> items = searchResultsPage.searchResultsConteiner
+                .findElements(By.xpath(searchResultsPage.searchResultsElementXpath));
         for (WebElement e : items) {
             String elementLinkTextOnSearchResultsPage = e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpath)).getText();
             e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpath)).click();
 
-            String elementLinkTextOnProductPage = driver.findElement(By.xpath(productPage.productTitleTextXpath)).getText();
+            String elementLinkTextOnProductPage = productPage.pageBody
+                    .findElement(By.xpath(productPage.productTitleTextXpath)).getText();
             Assert.assertEquals(elementLinkTextOnSearchResultsPage, elementLinkTextOnProductPage);
             break;
         }
@@ -74,6 +77,6 @@ public class RozetkaSearchProductsTests extends TestBase {
     public void searchProduct(String productText) {
         setElementText(productText, header.searchField);
         header.searchField.sendKeys(Keys.ENTER);
-        isElementPresent(searchResultsPage.searchResultsElementCss);
+        //isElementPresent(searchResultsPage.searchResultsElementCss);
     }
 }
