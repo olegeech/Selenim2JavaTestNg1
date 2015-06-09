@@ -77,6 +77,6 @@ public class RozetkaSearchProductsTests extends TestBase {
     public void searchProduct(String productText) {
         setElementText(productText, header.searchField);
         header.searchField.sendKeys(Keys.ENTER);
-        //isElementPresent(searchResultsPage.searchResultsElementCss);
+        isElementPresent(searchResultsPage.searchResultsConteiner);
     }
 }

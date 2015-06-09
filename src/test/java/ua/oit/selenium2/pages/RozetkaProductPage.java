@@ -11,6 +11,6 @@ public class RozetkaProductPage {
 
     public String productTitleTextXpath = "//h1[@itemprop='name']";
 
-    @FindBy(className = "body-layout") @CacheLookup public WebElement pageBody;
+    @FindBy(className = "content-inner") @CacheLookup public WebElement pageBody;
 
 }
