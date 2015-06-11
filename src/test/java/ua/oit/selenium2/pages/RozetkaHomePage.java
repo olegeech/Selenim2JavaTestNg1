@@ -11,28 +11,23 @@ import org.testng.Assert;
  * Created by Oleg on 07.06.2015.
  */
 public class RozetkaHomePage extends Page {
-
     public RozetkaHomePage (WebDriver webDriver) {
         super(webDriver);
     }
 
-    private String pageUrl = "https://rozetka.com.ua/";
-    private String title = "РРЅС‚РµСЂРЅРµС‚-РјР°РіР°Р·РёРЅ ROZETKAв„ў: С„РѕС‚РѕС‚РµС…РЅРёРєР°, РІРёРґРµРѕС‚РµС…РЅРёРєР°, Р°СѓРґРёРѕС‚РµС…РЅРёРєР°, РєРѕРјРїСЊСЋС‚РµСЂС‹ Рё РєРѕРјРїСЊСЋС‚РµСЂРЅС‹Рµ РєРѕРјРїР»РµРєС‚СѓСЋС‰РёРµ"; //TODO: not works on maven
+    private final String pageUrl = "https://rozetka.com.ua/";
+    private final String title = "Интернет-магазин ROZETKA™: фототехника, видеотехника, аудиотехника, компьютеры и компьютерные комплектующие"; //TODO: not works on maven
+
     @FindBy(tagName = "title")  @CacheLookup public WebElement homePageTitle;
     @FindBy(className = "aligned-center promo-wrap")  @CacheLookup public WebElement homePageContent;
 
 
-    public void initPage() {
-        driver.get(pageUrl);
-        Assert.assertEquals(driver.getTitle(), title);
-        isElementPresent(homePageContent);
+    public void initPage (){
+        initPages(pageUrl, title);
     }
 
     public String getPageUrl(){return pageUrl;}
-    public void setPageUrl(String p){pageUrl=p;}
-
     public String getTitle(){return title;}
-    public void setTitle(String t){title=t;}
 
 
 }

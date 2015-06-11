@@ -1,6 +1,7 @@
 package ua.oit.selenium2.pages;
 
 import org.openqa.selenium.*;
+import org.testng.Assert;
 
 /**
  * Abstract class representation of a Page in the UI. Page object pattern
@@ -36,6 +37,11 @@ abstract public class Page {
 
     public void clickElement(WebElement e) {
         e.click();
+    }
+
+    public void initPages(String pageUrl, String title) {
+        driver.get(pageUrl);
+        Assert.assertEquals(driver.getTitle(), title);
     }
 
 }

@@ -1,6 +1,5 @@
 package ua.oit.selenium2;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,14 +11,14 @@ import ua.oit.selenium2.pages.*;
 public class RozetkaUserAuthorisationTests extends TestBase {
     private RozetkaSignupPage signupPage;
     private RozetkaHeader header;
-    private RozetkaPopupAuth loginPopup;
+    private RozetkaHeaderLoginPopup loginPopup;
     private RozetkaPersonalDataPage personalDataPage;
 
     @BeforeMethod
     public void initPageObjects() {
         signupPage = PageFactory.initElements(driver, RozetkaSignupPage.class);
         header = PageFactory.initElements(driver, RozetkaHeader.class);
-        loginPopup = PageFactory.initElements(driver, RozetkaPopupAuth.class);
+        loginPopup = PageFactory.initElements(driver, RozetkaHeaderLoginPopup.class);
         personalDataPage = PageFactory.initElements(driver, RozetkaPersonalDataPage.class);
     }
 
@@ -43,7 +42,6 @@ public class RozetkaUserAuthorisationTests extends TestBase {
         }
 
         //verify is user can login
-        header.clickSingninLink();
         loginPopup.login(email, pwd);
 
         //verify is user logged in

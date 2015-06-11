@@ -1,11 +1,12 @@
 package ua.oit.selenium2;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ua.oit.selenium2.pages.*;
 
@@ -16,12 +17,23 @@ import java.util.List;
  */
 public class RozetkaSearchProductsTests extends TestBase {
     //Public variables
+
+    @DataProvider (name = "product")
+    public Object[][] createProductData(){
+        return new Object[][] {
+                {"Test"},
+        };
+    }
+
     private String productText = "test";
 
     private RozetkaHeader header;
     private RozetkaHomePage homePage;
     private RozetkaSearchResultsPage searchResultsPage;
     private RozetkaProductPage productPage;
+    private RozetkaHeaderLoginPopup loginPopup;
+    private RozetkaWishlistsPage wishlistsPage;
+
 
     @BeforeMethod
     public void initPageObjects() {
@@ -29,10 +41,12 @@ public class RozetkaSearchProductsTests extends TestBase {
         homePage = PageFactory.initElements(driver, RozetkaHomePage.class);
         searchResultsPage = PageFactory.initElements(driver, RozetkaSearchResultsPage.class);
         productPage = PageFactory.initElements(driver, RozetkaProductPage.class);
+        loginPopup = PageFactory.initElements(driver, RozetkaHeaderLoginPopup.class);
+        wishlistsPage = PageFactory.initElements(driver, RozetkaWishlistsPage.class);
     }
 
-    @Test
-    public void RozetkaSearchAProductTest1() throws Exception {
+    @Test (dataProvider = "product")
+    public int RozetkaSearchAProductTest1(String productText) throws Exception {
         homePage.initPage();
 
         //search product
@@ -50,11 +64,14 @@ public class RozetkaSearchProductsTests extends TestBase {
             System.out.println(i + ". " + searchResultsPage.getProductLinkText(e));
         }
         System.out.println("Number of elements: " + i);
+        return i;
     }
 
-    @Test
-    public void RozetkaSearchAndVerifyProductName() throws Exception {
+    @Test (dataProvider = "product")
+    public void RozetkaSearchAndVerifyProductName(String productText) throws Exception {
+        //preconditions
         homePage.initPage();
+        loginPopup.login("tatarchykoleg@gmail.com", "testPass");
 
         //search product
         header.searchProduct(productText);
@@ -64,7 +81,14 @@ public class RozetkaSearchProductsTests extends TestBase {
         for (WebElement e : items) {
             String searchResultsElementLinkText = searchResultsPage.getProductLinkText(e);
             searchResultsPage.clickProductLink(e);
-            Assert.assertEquals(searchResultsElementLinkText, productPage.getProductLinkText());
+
+            Assert.assertTrue(productPage.getProductLinkText().contains(searchResultsElementLinkText));
+            //Assert.assertEquals(searchResultsElementLinkText, productPage.getProductLinkText()); //Rozetka added some text on product page, seems feature, not a bug.
+
+            productPage.addProductToUserWishlist();
+            wishlistsPage.initPage();
+            wishlistsPage.verifyIsGoodExist(searchResultsElementLinkText);
+
             break;
         }
     }
