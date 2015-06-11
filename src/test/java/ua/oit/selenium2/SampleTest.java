@@ -1,5 +1,6 @@
 package ua.oit.selenium2;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -24,8 +25,19 @@ public class SampleTest extends TestBase {
   public void testHomePageHasAHeader() {
     driver.get(baseUrl);
 
+    //Explicit wait examples
     WebDriverWait wait = new WebDriverWait(driver, 1);
     wait.until(ExpectedConditions.presenceOfElementLocated(By.id(homepage.HEADER_LOCATOR)));
+    wait.until(ExpectedConditions.visibilityOf(homepage.header));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(homepage.sameHeaderBy));
+    wait.until(ExpectedConditions.elementToBeClickable(homepage.sameHeader));
+    wait.until(ExpectedConditions.elementToBeSelected(homepage.sameHeaderBy));
+    wait.until(ExpectedConditions.elementToBeSelected(homepage.header));
+    wait.until(ExpectedConditions.textToBePresentInElement(homepage.header, "Header"));
+    wait.until(ExpectedConditions.stalenessOf(homepage.header));
+    //wait.until(ExpectedConditions.alertIsPresent(homepage.header));
+    wait.until(ExpectedConditions.titleContains("Header"));
+
 
     Assert.assertFalse("".equals(homepage.header.getText()));
 

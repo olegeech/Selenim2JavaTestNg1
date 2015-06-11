@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class RozetkaSearchProductsTests extends TestBase {
     //Public variables
-    public String productText = "test";
+    private String productText = "test";
 
     private RozetkaHeader header;
     private RozetkaHomePage homePage;
@@ -36,21 +36,20 @@ public class RozetkaSearchProductsTests extends TestBase {
         homePage.initPage();
 
         //search product
-        searchProduct(productText);
+        header.searchProduct(productText);
         //clickElement(header.searchBtn);
 
         //verify search results page
         Assert.assertEquals(searchResultsPage.searchResultsTitleText.getText(), productText);
+
         //count results on the page
-        List<WebElement> items = searchResultsPage.searchResultsConteiner
-                .findElements(By.xpath(searchResultsPage.searchResultsElementXpath));
+        List<WebElement> items = searchResultsPage.getSearchResults();
         int i = 0;
         for (WebElement e : items) {
             i++;
-            String elementLinkText = e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpath)).getText();
-            System.out.println(i+". "+elementLinkText);
+            System.out.println(i + ". " + searchResultsPage.getProductLinkText(e));
         }
-        System.out.println("Number of elements: "+i);
+        System.out.println("Number of elements: " + i);
     }
 
     @Test
@@ -58,25 +57,17 @@ public class RozetkaSearchProductsTests extends TestBase {
         homePage.initPage();
 
         //search product
-        searchProduct(productText);
+        header.searchProduct(productText);
 
-        //click on the link of EACH product and verify product Name
-        List<WebElement> items = searchResultsPage.searchResultsConteiner
-                .findElements(By.xpath(searchResultsPage.searchResultsElementXpath));
+        //click on the link of EACH product and verify product Name, add them to wishlist and verify that product is in wishlist
+        List<WebElement> items = searchResultsPage.getSearchResults();
         for (WebElement e : items) {
-            String elementLinkTextOnSearchResultsPage = e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpath)).getText();
-            e.findElement(By.xpath(searchResultsPage.searchResultsElementLinkXpath)).click();
-
-            String elementLinkTextOnProductPage = productPage.pageBody
-                    .findElement(By.xpath(productPage.productTitleTextXpath)).getText();
-            Assert.assertEquals(elementLinkTextOnSearchResultsPage, elementLinkTextOnProductPage);
+            String searchResultsElementLinkText = searchResultsPage.getProductLinkText(e);
+            searchResultsPage.clickProductLink(e);
+            Assert.assertEquals(searchResultsElementLinkText, productPage.getProductLinkText());
             break;
         }
     }
 
-    public void searchProduct(String productText) {
-        setElementText(productText, header.searchField);
-        header.searchField.sendKeys(Keys.ENTER);
-        isElementPresent(searchResultsPage.searchResultsConteiner);
-    }
+
 }

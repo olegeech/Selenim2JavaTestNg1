@@ -28,4 +28,14 @@ abstract public class Page {
         }
     }
 
+    public void setElementText(String name, WebElement e) {
+        e.click();
+        e.clear();
+        e.sendKeys(name);
+    }
+
+    public void clickElement(WebElement e) {
+        e.click();
+    }
+
 }

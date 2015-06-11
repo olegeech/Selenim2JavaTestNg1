@@ -1,6 +1,7 @@
 package ua.oit.selenium2.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by Oleg on 02.06.2015.
  */
-public class RozetkaSignupPage {
+public class RozetkaSignupPage extends Page{
 
     @FindBy(name = "title")         @CacheLookup public WebElement nameField;
     @FindBy(name = "email")         @CacheLookup public WebElement emailField;
@@ -17,5 +18,18 @@ public class RozetkaSignupPage {
                                     @CacheLookup public WebElement regBtn;
     @FindBy(name = "app-message")   @CacheLookup public WebElement registeredUserMessage;
     @FindBy(name = "signup")        @CacheLookup public WebElement signupContent;
+
+    public RozetkaSignupPage (WebDriver webDriver) {
+        super(webDriver);
+    }
+
+
+    public void registerNewUser(String name, String email, String pwd) {
+        isElementPresent(signupContent);
+        setElementText(name, nameField);
+        setElementText(email, emailField);
+        setElementText(pwd, pwdField);
+        clickElement(regBtn);
+    }
 
 }

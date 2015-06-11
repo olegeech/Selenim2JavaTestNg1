@@ -1,5 +1,6 @@
 package ua.oit.selenium2;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -31,11 +32,7 @@ public class RozetkaUserAuthorisationTests extends TestBase {
         driver.get(baseUrl);
 
         //register new user
-        isElementPresent(signupPage.signupContent);
-        setElementText(name, signupPage.nameField);
-        setElementText(email, signupPage.emailField);
-        setElementText(pwd, signupPage.pwdField);
-        clickElement(signupPage.regBtn);
+        signupPage.registerNewUser(name, email, pwd);
 
         //verify if the user is already exist
         waitForElement(signupPage.registeredUserMessage);
@@ -46,10 +43,8 @@ public class RozetkaUserAuthorisationTests extends TestBase {
         }
 
         //verify is user can login
-        clickElement(header.signinLink);
-        setElementText(email, loginPopup.loginField);
-        setElementText(pwd, loginPopup.pwdAuthField);
-        clickElement(loginPopup.loginBtn);
+        header.clickSingninLink();
+        loginPopup.login(email, pwd);
 
         //verify is user logged in
         waitForElement(personalDataPage.personalInformationContent);
@@ -57,6 +52,4 @@ public class RozetkaUserAuthorisationTests extends TestBase {
         assertElementText(header.userNameMenu, name);
 
     }
-
-
 }

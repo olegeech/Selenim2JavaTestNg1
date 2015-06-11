@@ -62,11 +62,7 @@ public class TestBase {
      * This is functions library below
      *
      */
-    public void setElementText(String name, WebElement e) {
-        e.click();
-        e.clear();
-        e.sendKeys(name);
-    }
+
 
     public String getTitle() {
         return driver.getTitle();
@@ -82,10 +78,6 @@ public class TestBase {
                     "\n >> actual page:"+ actualPageTitle);
             //System.out.printf("This is: %s page%n", actualPageTitle);
         }
-    }
-
-    public void clickElement(WebElement e) {
-        e.click();
     }
 
 /*    public void getAttribute(By element; String attribute) {
