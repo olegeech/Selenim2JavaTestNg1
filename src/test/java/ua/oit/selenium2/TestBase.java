@@ -48,7 +48,7 @@ public class TestBase {
     @BeforeMethod
     public void initWebDriver() {
         driver = WebDriverFactory.getDriver(gridHubUrl, capabilities);
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     @AfterSuite(alwaysRun = true)
@@ -57,56 +57,6 @@ public class TestBase {
     }
 
 
-
-    /**
-     * This is functions library below
-     *
-     */
-
-
-    public String getTitle() {
-        return driver.getTitle();
-    }
-
-    public void isRightPage(String expectedPageTitle) {
-        // Check that we're on the right page.
-        String actualPageTitle = driver.getTitle();
-        if (!actualPageTitle.contains(expectedPageTitle)) {
-            // Alternatively, we could navigate to the login page, perhaps logging out first
-            throw new IllegalStateException(
-                    "\n >> Expected page: "+expectedPageTitle+
-                    "\n >> actual page:"+ actualPageTitle);
-            //System.out.printf("This is: %s page%n", actualPageTitle);
-        }
-    }
-
-/*    public void getAttribute(By element; String attribute) {
-        WebElement e = driver.findElement(element);
-        e.attribute;
-    }*/
-
-    public String getElementText(WebElement e) {
-        String text = e.getText();
-        return text;
-    }
-
-    public void waitForElement(WebElement e) {
-        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(e));
-    }
-
-    public void waitForPageToLoad() {
-        driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.SECONDS);
-    }
-
-    public boolean isElementDisplayed(WebElement e) {
-        boolean isDisplayed = e.isDisplayed();
-        return isDisplayed;
-    }
-
-    public String getElementAttribute(WebElement e) {
-        String text = e.getAttribute(String.valueOf(e));
-        return text;
-    }
 
     public boolean isElementPresent(WebElement e) {
         try {
@@ -117,15 +67,6 @@ public class TestBase {
         }
     }
 
-    public void assertElementText(WebElement e, String expectedText) {
-        String actualElementText = getElementText(e);
-        if (!actualElementText.equals(expectedText)) {
-            throw new IllegalStateException(
-                    "\n >> Web element: "+e+
-                    "\n >> Expected text of the element: "+expectedText+
-                    "\n >> Actual text of the element: "+actualElementText);
-        }
-    }
 
     public String closeAlertAndGetItsText() {
         try {

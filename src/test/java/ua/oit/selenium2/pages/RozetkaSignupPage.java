@@ -11,6 +11,9 @@ import org.openqa.selenium.support.FindBy;
  */
 public class RozetkaSignupPage extends Page{
 
+    private String pageUrl = "https://my.rozetka.com.ua/signup/";
+    private String title = "ROZETKA Ч –егистраци€";
+
     @FindBy(name = "title")         @CacheLookup public WebElement nameField;
     @FindBy(name = "email")         @CacheLookup public WebElement emailField;
     @FindBy(name = "password")      @CacheLookup public WebElement pwdField;
@@ -23,6 +26,10 @@ public class RozetkaSignupPage extends Page{
         super(webDriver);
     }
 
+    public void initPage (){
+        initPages(pageUrl, title);
+    }
+
 
     public void registerNewUser(String name, String email, String pwd) {
         isElementPresent(signupContent);
@@ -30,6 +37,12 @@ public class RozetkaSignupPage extends Page{
         setElementText(email, emailField);
         setElementText(pwd, pwdField);
         clickElement(regBtn);
+
+        //verify if the user is already exist
+        if (isElementDisplayed(registeredUserMessage)) {
+            String alreadyRegisteredUserMessageText = getElementText(registeredUserMessage);
+            System.out.println(" >> "+alreadyRegisteredUserMessageText+"\n");
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package ua.oit.selenium2;
 
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ua.oit.selenium2.pages.*;
@@ -23,31 +24,24 @@ public class RozetkaUserAuthorisationTests extends TestBase {
     }
 
     @Test
-    public void RozetkaUserRegistrationTest() throws Exception {
-        baseUrl = "https://my.rozetka.com.ua/signup/";
+    public void RozetkaRegisterUserAndVerifyLoginAndUserName() throws Exception {
         String name = "testName";
         String email = "tatarchykoleg@gmail.com";
         String pwd = "testPass";
-        driver.get(baseUrl);
+
+        signupPage.initPage();
 
         //register new user
         signupPage.registerNewUser(name, email, pwd);
-
-        //verify if the user is already exist
-        waitForElement(signupPage.registeredUserMessage);
-        if (isElementDisplayed(signupPage.registeredUserMessage)) {
-            String alreadyRegisteredUserMessageText = getElementText(signupPage.registeredUserMessage);
-            System.out.println(" >> "+alreadyRegisteredUserMessageText+"\n");
-            //TODO: tbd...
-        }
 
         //verify is user can login
         loginPopup.login(email, pwd);
 
         //verify is user logged in
-        waitForElement(personalDataPage.personalInformationContent);
         isElementPresent(personalDataPage.personalInformationContent);
-        assertElementText(header.userNameMenu, name);
+
+        //verify if user name is displayed correctly
+        Assert.assertEquals(header.userNameMenu.getText(), name);
 
     }
 }
