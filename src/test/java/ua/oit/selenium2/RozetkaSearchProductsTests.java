@@ -1,9 +1,7 @@
 package ua.oit.selenium2;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -24,8 +22,6 @@ public class RozetkaSearchProductsTests extends TestBase {
                 {"Test"},
         };
     }
-
-    private String productText = "test";
 
     private RozetkaHeader header;
     private RozetkaHomePage homePage;
