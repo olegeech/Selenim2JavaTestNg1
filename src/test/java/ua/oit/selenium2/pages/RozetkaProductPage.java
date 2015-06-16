@@ -29,7 +29,8 @@ public class RozetkaProductPage {
     }
 
     public void addProductToUserWishlist() {
-        if (wishlistsUsersAddedLink.isDisplayed()) {
+        //System.out.println(wishlistsUsersAddedLink.getAttribute("class"));
+        if (wishlistsUsersAddedLink.getAttribute("class").equals("underline novisited")) {
             System.out.println("The product is already in wishlist");
         } else {
             clickUsersWishlistLink();
