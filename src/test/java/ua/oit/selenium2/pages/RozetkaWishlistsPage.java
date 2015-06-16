@@ -1,11 +1,13 @@
 package ua.oit.selenium2.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,10 +20,14 @@ public class RozetkaWishlistsPage extends Page {
 
     private final String pageUrl = "https://my.rozetka.com.ua/profile/wishlists/";
     private final String title = "ROZETKA Ч —писки желаний | Ћичный кабинет";
+    private final String wishlistItemLinkXPath = "//div[@class='g-i-tile-i-title']";
 
 
     @FindBy(name = "wishlist-container")     @CacheLookup public WebElement wishlistContainer;
-    @FindBy(xpath = "//div[@class='g-i-tile-i-title']")    @CacheLookup public WebElement goodsLink;
+    @FindBy(name = "wishlist-block-goods")     @CacheLookup public WebElement wishlistGoodsBlock;
+    @FindBy(name = "wishlist-cell")     @CacheLookup public WebElement wishlistCell;
+    @FindBy(name = "wishlist-block-goods-item")     @CacheLookup public WebElement wishlistItem;
+    @FindBy(xpath = wishlistItemLinkXPath)    @CacheLookup public WebElement wishlistItemLink;
 
 
     public String getPageUrl(){return pageUrl;}
@@ -30,10 +36,16 @@ public class RozetkaWishlistsPage extends Page {
         initPages(pageUrl, title);
     }
 
-    public void verifyIsGoodExist(String s) {
-        System.out.println("Expected good name: " +s);
-        System.out.println("Actual good name: " +goodsLink.getText());
-        Assert.assertTrue(goodsLink.getText().contains(s));
+    public void verifyIsGoodExist(String expectedGoodName) {
+        System.out.println("Expected good name: " +expectedGoodName);
+        List<WebElement> wishlistItemsLinks = wishlistGoodsBlock.findElements(By.xpath(wishlistItemLinkXPath));
+        List<String> wishlistItemsLinksText = new ArrayList<String>();
+        for (WebElement wishlistItemsLink : wishlistItemsLinks) {
+            String wishlistItemsLinkText = wishlistItemsLink.getText();
+            System.out.println("Actual goods exist in the wishlist: " + wishlistItemsLinkText);
+            wishlistItemsLinksText.add(wishlistItemsLinkText);
+        }
+        Assert.assertTrue(wishlistItemsLinksText.contains(expectedGoodName));
     }
 
 
