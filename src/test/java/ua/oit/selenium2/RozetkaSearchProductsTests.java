@@ -42,7 +42,7 @@ public class RozetkaSearchProductsTests extends TestBase {
     }
 
     @Test (dataProvider = "product")
-    public int RozetkaSearchAProductTest1(String productText) throws Exception {
+    public void RozetkaSearchProductAndCountProducts(String productText) throws Exception {
         homePage.initPage();
 
         //search product
@@ -60,11 +60,10 @@ public class RozetkaSearchProductsTests extends TestBase {
             System.out.println(i + ". " + searchResultsPage.getProductLinkText(e));
         }
         System.out.println("Number of elements: " + i);
-        return i;
     }
 
     @Test (dataProvider = "product")
-    public void RozetkaSearchAndVerifyProductName(String productText) throws Exception {
+    public void RozetkaSearchAndVerifyProductNameAddWishlist(String productText) throws Exception {
         //preconditions
         homePage.initPage();
         loginPopup.login("tatarchykoleg@gmail.com", "testPass");
