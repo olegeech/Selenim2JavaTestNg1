@@ -36,6 +36,10 @@ abstract public class Page {
     public void setElementText(String name, WebElement e) {
         e.click();
         e.clear();
+        //clear edit box as a user (if needed)
+/*      e.sendKeys(Keys.CONTROL + "a");
+        Thread.sleep(200);
+        e.sendKeys(Keys.DELETE);*/
         e.sendKeys(name);
     }
 
