@@ -35,7 +35,8 @@ public class RozetkaHeader extends Page{
 
     public void searchProduct(String productText) {
         setElementText(productText, searchField);
-        searchField.sendKeys(Keys.ENTER);
+        searchField.sendKeys(Keys.RETURN);
+        //searchField.sendKeys(Keys.ENTER); //doesn't work on MacOS
     }
 
 
