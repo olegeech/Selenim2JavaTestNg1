@@ -9,8 +9,8 @@ import org.openqa.selenium.support.FindBy;
  */
 public class RozetkaPersonalDataPage {
 
-    @FindBy(id = "personal_information_content")  @CacheLookup public WebElement personalInformationContent;
-    @FindBy(id = "personal_information")  @CacheLookup public WebElement personalInformation;
-    @FindBy(className = "profile-info-l-i")  @CacheLookup public WebElement profileInfoEmail;
+    @FindBy(id = "personal_information_content")  public WebElement personalInformationContent;
+    @FindBy(id = "personal_information")          public WebElement personalInformation;
+    @FindBy(className = "profile-info-l-i")       public WebElement profileInfoEmail;
 
 }

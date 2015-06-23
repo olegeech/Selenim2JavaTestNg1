@@ -12,12 +12,16 @@ public class RozetkaProductPage {
 
     public String productTitleTextXpath = "//h1[@itemprop='name']";
 
-    @FindBy(className = "content-inner") @CacheLookup public WebElement pageBody;
-    @FindBy(name = "users_towishlist") @CacheLookup public WebElement usersWishlistLink;
-    @FindBy(xpath = "//span[@name='wishlists_users_added']/a") @CacheLookup public WebElement wishlistsUsersAddedLink;
-    @FindBy(xpath = "//button[@class = 'btn-link-i']") @CacheLookup public WebElement wishlistPopupSaveBtn;
-    @FindBy(xpath = "//div[@class = 'wishlists-success'/p/a]") @CacheLookup public WebElement wishlistPopupSucessToWishlistLink;
-
+    @FindBy(className = "content-inner")
+    public WebElement pageBody;
+    @FindBy(name = "users_towishlist")
+    public WebElement usersWishlistLink;
+    @FindBy(xpath = "//span[@name='wishlists_users_added']/a")
+    public WebElement wishlistsUsersAddedLink;
+    @FindBy(xpath = "//button[@class = 'btn-link-i']")
+    public WebElement wishlistPopupSaveBtn;
+    @FindBy(xpath = "//div[@class = 'wishlists-success'/p/a]")
+    public WebElement wishlistPopupSucessToWishlistLink;
 
 
     public String getProductLinkText() {
