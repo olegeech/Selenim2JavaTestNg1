@@ -23,11 +23,11 @@ public class RozetkaWishlistsPage extends Page {
     private final String wishlistItemLinkXPath = "//div[@class='g-i-tile-i-title']";
 
 
-    @FindBy(name = "wishlist-container")     @CacheLookup public WebElement wishlistContainer;
-    @FindBy(name = "wishlist-block-goods")     @CacheLookup public WebElement wishlistGoodsBlock;
-    @FindBy(name = "wishlist-cell")     @CacheLookup public WebElement wishlistCell;
-    @FindBy(name = "wishlist-block-goods-item")     @CacheLookup public WebElement wishlistItem;
-    @FindBy(xpath = wishlistItemLinkXPath)    @CacheLookup public WebElement wishlistItemLink;
+    @FindBy(name = "wishlist-container")        public WebElement wishlistContainer;
+    @FindBy(name = "wishlist-block-goods")      public WebElement wishlistGoodsBlock;
+    @FindBy(name = "wishlist-cell")             public WebElement wishlistCell;
+    @FindBy(name = "wishlist-block-goods-item") public WebElement wishlistItem;
+    @FindBy(xpath = wishlistItemLinkXPath)      public WebElement wishlistItemLink;
 
 
     public String getPageUrl(){return pageUrl;}
