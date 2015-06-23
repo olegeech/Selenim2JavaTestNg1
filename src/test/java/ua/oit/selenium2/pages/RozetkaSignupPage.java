@@ -14,13 +14,13 @@ public class RozetkaSignupPage extends Page{
     private String pageUrl = "https://my.rozetka.com.ua/signup/";
     private String title = "ROZETKA Ч –егистраци€";
 
-    @FindBy(name = "title")         @CacheLookup public WebElement nameField;
-    @FindBy(name = "email")         @CacheLookup public WebElement emailField;
-    @FindBy(name = "password")      @CacheLookup public WebElement pwdField;
+    @FindBy(name = "title")         public WebElement nameField;
+    @FindBy(name = "email")         public WebElement emailField;
+    @FindBy(name = "password")      public WebElement pwdField;
     @FindBy(xpath = "//div[1]/div/div/div/div/form/div[4]/span/button")
-                                    @CacheLookup public WebElement regBtn;
-    @FindBy(name = "app-message")   @CacheLookup public WebElement registeredUserMessage;
-    @FindBy(name = "signup")        @CacheLookup public WebElement signupContent;
+                                    public WebElement regBtn;
+    @FindBy(name = "app-message")   public WebElement registeredUserMessage;
+    @FindBy(name = "signup")        public WebElement signupContent;
 
     public RozetkaSignupPage (WebDriver webDriver) {
         super(webDriver);
