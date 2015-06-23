@@ -53,9 +53,9 @@ public class RozetkaSearchProductsTests extends TestBase {
         Assert.assertEquals(searchResultsPage.searchResultsTitleText.getText(), productText);
 
         //count results on the page
-        List<WebElement> items = searchResultsPage.getSearchResults();
+        List<WebElement> searchResults = searchResultsPage.getSearchResults();
         int i = 0;
-        for (WebElement e : items) {
+        for (WebElement e : searchResults) {
             i++;
             System.out.println(i + ". " + searchResultsPage.getProductLinkText(e));
         }
@@ -71,15 +71,18 @@ public class RozetkaSearchProductsTests extends TestBase {
         //search product
         header.searchProduct(productText);
 
-        //click on the link of EACH product and verify product Name, add them to wishlist and verify that product is in wishlist
-        List<WebElement> items = searchResultsPage.getSearchResults();
-        for (WebElement e : items) {
+        //click on the link of EACH product and verify product Name, and then add it to wishlist and verify that product is in wishlist
+        List<WebElement> searchResults = searchResultsPage.getSearchResults();
+        for (WebElement e : searchResults) {
+
+            //get text of the element from the search
             String searchResultsElementLinkText = searchResultsPage.getProductLinkText(e);
             searchResultsPage.clickProductLink(e);
 
+            //Verify that the product name on product page contains text from the product on results page.
             Assert.assertTrue(productPage.getProductLinkText().contains(searchResultsElementLinkText));
-            //Assert.assertEquals(searchResultsElementLinkText, productPage.getProductLinkText()); //Rozetka added some text on product page, seems feature, not a bug.
 
+            //Add the product to wishlist and verify that in it.
             productPage.addProductToUserWishlist();
             wishlistsPage.initPage();
             wishlistsPage.verifyIsGoodExist(searchResultsElementLinkText);
