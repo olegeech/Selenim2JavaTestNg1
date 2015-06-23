@@ -21,19 +21,12 @@ public class RozetkaSearchResultsPage extends Page {
     public final String searchResultsElementLinkXpath = "//div[@class='g-i-list-middle-part']/div/a";
 
     @FindBy(xpath = searchResultsElementLinkXpath)
-    @CacheLookup
     public WebElement searchResultsElementLink;
-
     @FindBy(className = "search-container")
-    @CacheLookup
     public WebElement searchResultsConteiner;
-
     @FindBy(className = "search-result-title-text")
-    @CacheLookup
     public WebElement searchResultsTitleText;
-
     @FindBy(className = "g-i-list available clearfix")
-    @CacheLookup
     public WebElement searchResultsElementCss;
     //@FindBy(xpath = searchResultsElementXpath)         @CacheLookup public WebElement searchResultsElementXpath;
 
