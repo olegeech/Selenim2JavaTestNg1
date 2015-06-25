@@ -16,7 +16,7 @@ public class RozetkaHomePage extends Page {
     }
 
     private final String pageUrl = "https://rozetka.com.ua/";
-    private final String title = "Интернет-магазин ROZETKA™: фототехника, видеотехника, аудиотехника, компьютеры и компьютерные комплектующие"; //TODO: not works on maven
+    private final String title = "РРЅС‚РµСЂРЅРµС‚-РјР°РіР°Р·РёРЅ ROZETKAв„ў: С„РѕС‚РѕС‚РµС…РЅРёРєР°, РІРёРґРµРѕС‚РµС…РЅРёРєР°, Р°СѓРґРёРѕС‚РµС…РЅРёРєР°, РєРѕРјРїСЊСЋС‚РµСЂС‹ Рё РєРѕРјРїСЊСЋС‚РµСЂРЅС‹Рµ РєРѕРјРїР»РµРєС‚СѓСЋС‰РёРµ"; //TODO: not works on maven
 
     @FindBy(tagName = "title")                          public WebElement homePageTitle;
     @FindBy(className = "aligned-center promo-wrap")    public WebElement homePageContent;
