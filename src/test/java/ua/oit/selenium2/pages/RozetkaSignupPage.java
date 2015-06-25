@@ -12,15 +12,15 @@ import org.openqa.selenium.support.FindBy;
 public class RozetkaSignupPage extends Page{
 
     private String pageUrl = "https://my.rozetka.com.ua/signup/";
-    private String title = "ROZETKA — Ğåãèñòğàöèÿ";
+    private String title = "ROZETKA â€” Ğ ĞµĞ³Ğ¸ÑÑ‚Ñ€Ğ°Ñ†Ğ¸Ñ";
 
-    @FindBy(name = "title")         public WebElement nameField;
-    @FindBy(name = "email")         public WebElement emailField;
-    @FindBy(name = "password")      public WebElement pwdField;
+    @FindBy(name = "title")         @CacheLookup public WebElement nameField;
+    @FindBy(name = "email")         @CacheLookup public WebElement emailField;
+    @FindBy(name = "password")      @CacheLookup public WebElement pwdField;
     @FindBy(xpath = "//div[1]/div/div/div/div/form/div[4]/span/button")
-                                    public WebElement regBtn;
-    @FindBy(name = "app-message")   public WebElement registeredUserMessage;
-    @FindBy(name = "signup")        public WebElement signupContent;
+                                    @CacheLookup public WebElement regBtn;
+    @FindBy(name = "app-message")   @CacheLookup public WebElement registeredUserMessage;
+    @FindBy(name = "signup")        @CacheLookup public WebElement signupContent;
 
     public RozetkaSignupPage (WebDriver webDriver) {
         super(webDriver);
@@ -39,7 +39,7 @@ public class RozetkaSignupPage extends Page{
         clickElement(regBtn);
 
         //verify if the user is already exist
-        if (isElementDisplayed(registeredUserMessage)) {
+        if (isElementPresent(registeredUserMessage)) {
             String alreadyRegisteredUserMessageText = getElementText(registeredUserMessage);
             System.out.println(" >> "+alreadyRegisteredUserMessageText+"\n");
         }
