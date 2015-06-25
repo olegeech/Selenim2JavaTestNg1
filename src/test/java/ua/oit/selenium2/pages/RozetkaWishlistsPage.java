@@ -19,7 +19,7 @@ public class RozetkaWishlistsPage extends Page {
     }
 
     private final String pageUrl = "https://my.rozetka.com.ua/profile/wishlists/";
-    private final String title = "ROZETKA — Списки желаний | Личный кабинет";
+    private final String title = "ROZETKA вЂ” РЎРїРёСЃРєРё Р¶РµР»Р°РЅРёР№ | Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚";
     private final String wishlistItemLinkXPath = "//div[@class='g-i-tile-i-title']";
 
 
