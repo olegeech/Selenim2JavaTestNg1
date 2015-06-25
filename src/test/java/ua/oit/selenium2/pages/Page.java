@@ -22,13 +22,10 @@ abstract public class Page {
         this.driver = driver;
     }
 
-
-    //TODO: move support methods from TestBase class
     public boolean isElementPresent(WebElement e) {
-        try {
-            e.findElement(By.id(e.getTagName()));
+        if (driver.findElements(By.id(e.getTagName())).size() != 0) {
             return true;
-        } catch (NoSuchElementException ex) {
+        } else {
             return false;
         }
     }
@@ -50,11 +47,6 @@ abstract public class Page {
     public void initPages(String pageUrl, String title) {
         driver.get(pageUrl);
         Assert.assertEquals(driver.getTitle(), title);
-    }
-
-    public boolean isElementDisplayed(WebElement e) {
-        boolean isDisplayed = e.isDisplayed();
-        return isDisplayed;
     }
 
     public String getElementText(WebElement e) {
