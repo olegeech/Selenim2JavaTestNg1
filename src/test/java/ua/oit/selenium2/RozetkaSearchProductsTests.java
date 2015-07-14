@@ -11,7 +11,9 @@ import ua.oit.selenium2.pages.*;
 import java.util.List;
 
 /**
- * Created by Oleg on 07.06.2015.
+ * Class {@code RozetkaSearchProductsTests} is test suite for search functionality.
+ *
+ * @author Oleg Tatarchuk
  */
 public class RozetkaSearchProductsTests extends TestBase {
     //Public variables
@@ -73,6 +75,7 @@ public class RozetkaSearchProductsTests extends TestBase {
 
         //click on the link of EACH product and verify product Name, and then add it to wishlist and verify that product is in wishlist
         List<WebElement> searchResults = searchResultsPage.getSearchResults();
+        //searchResults.indexOf(searchResultsPage.searchResultsTitleText);
         for (WebElement e : searchResults) {
 
             //get text of the element from the search

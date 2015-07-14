@@ -6,42 +6,26 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
+import static com.codeborne.selenide.Selenide.$;
+
 /**
- * Created by Oleg on 02.06.2015.
+ * Class {@code RozetkaHeaderLoginPopup} describes Login popup.
+ * This class also in charge for interacting with web elements located on the page.
+ * Use methods in this class for interact with this page or add new.
+ *
+ * @author Oleg Tatarchuk
  */
-public class RozetkaHeaderLoginPopup extends RozetkaHeader{
-    private final String socialBindCloseLinkLocator = "close";
-
-    @FindBy(name = "login")       @CacheLookup public WebElement loginField;
-    @FindBy(name = "password")    @CacheLookup public WebElement pwdAuthField;
-    @FindBy(name = "auth_submit") @CacheLookup public WebElement loginBtn;
-    @FindBy(name = socialBindCloseLinkLocator) @CacheLookup public WebElement socialBindCloseLink;
-
-    //@FindBy(css = "social-bind-tiny-close novisited") @CacheLookup public WebElement socialBindCloseLink;
-
-    public RozetkaHeaderLoginPopup(WebDriver webDriver) {
-        super(webDriver);
-    }
-
+public class RozetkaHeaderLoginPopup extends RozetkaHeader implements Popup{
+    public static By inputLogin     = By.name("login");
+    public static By inputPassword  = By.name("password");
+    public static By buttonLogin    = By.name("auth_submit");
 
     public void login(String email, String pwd) {
-        String signinLinkTextActual = getSigninLinkText();
-        String signinLinkTextExpected = "войдите в личный кабинет";
-
-        boolean isUserNotLoggedIn = signinLinkTextExpected.equals(signinLinkTextActual);
-        if (isUserNotLoggedIn) {
+        if (getSigninLinkText().equals("войдите в личный кабинет")) {
             clickSingninLink();
-            setElementText(email, loginField);
-            setElementText(pwd, pwdAuthField);
-            clickElement(loginBtn);
-
- /*           if (driver.findElements(By.name(socialBindCloseLinkLocator)).size() != 0) {
-                driver.findElement(By.name(socialBindCloseLinkLocator)).click();
-            }*/
-
-
-
-        } else {System.out.println("\n *** User is already logged in *** \n");}
+            $(inputLogin).setValue(email);
+            $(inputPassword).setValue(pwd);
+            $(buttonLogin).click();
+        } else {System.out.println("\n >> User is already logged in \n");}
     }
-
 }

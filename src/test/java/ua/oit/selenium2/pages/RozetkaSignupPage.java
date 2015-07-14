@@ -1,48 +1,43 @@
 package ua.oit.selenium2.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.$;
 
 /**
- * Created by Oleg on 02.06.2015.
+ * Class {@code RozetkaSignupPage} describes sign up page.
+ * This class also in charge for interacting with web elements located on the page.
+ * Use methods in this class for interact with this page or add new.
+ *
+ * @author Oleg Tatarchuk
  */
 public class RozetkaSignupPage extends Page{
-
-    private String pageUrl = "https://my.rozetka.com.ua/signup/";
-    private String title = "ROZETKA — Регистрация";
-
-    @FindBy(name = "title")         @CacheLookup public WebElement nameField;
-    @FindBy(name = "email")         @CacheLookup public WebElement emailField;
-    @FindBy(name = "password")      @CacheLookup public WebElement pwdField;
-    @FindBy(xpath = "//div[1]/div/div/div/div/form/div[4]/span/button")
-                                    @CacheLookup public WebElement regBtn;
-    @FindBy(name = "app-message")   @CacheLookup public WebElement registeredUserMessage;
-    @FindBy(name = "signup")        @CacheLookup public WebElement signupContent;
-
-    public RozetkaSignupPage (WebDriver webDriver) {
-        super(webDriver);
-    }
+    //Page URL, title and locators initialisation
+    public static String pageUrl      = "https://my.rozetka.com.ua/signup/";
+    public static String title        = "ROZETKA — Регистрация";
+    public static By frameSignup      = By.name("signup");
+    public static By inputName        = By.name("title");
+    public static By inputEmail       = By.name("email");
+    public static By inputPassword    = By.name("password");
+    public static By buttonReg        = byText("Зарегистрироваться");
+    public static By registeredUserMessage = By.name("app-message");
 
     public void initPage (){
         initPages(pageUrl, title);
     }
 
-
     public void registerNewUser(String name, String email, String pwd) {
-        isElementPresent(signupContent);
-        setElementText(name, nameField);
-        setElementText(email, emailField);
-        setElementText(pwd, pwdField);
-        clickElement(regBtn);
-
-        //verify if the user is already exist
-        if (isElementPresent(registeredUserMessage)) {
-            String alreadyRegisteredUserMessageText = getElementText(registeredUserMessage);
-            System.out.println(" >> "+alreadyRegisteredUserMessageText+"\n");
+        //Implemented using Selenide
+        $(frameSignup).shouldHave(text("Регистрация"));
+        $(inputName).setValue(name);
+        $(inputEmail).setValue(email);
+        $(inputPassword).setValue(pwd);
+        $(buttonReg).click();
+        //verify if the user is already exist and print actual message text in console
+        if ($(registeredUserMessage).is(exist)) {
+            System.out.println(" >> "+$(registeredUserMessage).getText()+"\n");
         }
     }
-
 }

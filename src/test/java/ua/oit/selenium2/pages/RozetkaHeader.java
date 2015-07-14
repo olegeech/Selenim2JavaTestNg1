@@ -7,29 +7,31 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+
 /**
- * Created by Oleg on 02.06.2015.
+ * Class {@code RozetkaHeader} describes header of the Rozetka site.
+ * This class also in charge for interacting with web elements located on the page.
+ * Use methods in this class for interact with this page or add new.
+ *
+ * @author Oleg Tatarchuk
  */
 public class RozetkaHeader extends Page{
 
-    @FindBy(className = "clearfix body-header-row-bottom")
-                                public WebElement headerContent;
-    @FindBy(name = "signin")    public WebElement signinLink;
-    @FindBy(id = "user_menu")   public WebElement userMenu;
-    @FindBy(name = "profile")   public WebElement userNameMenu;
+    public static By userNameLink = By.name("profile");
+    public static By signinLink = By.name("signin");
     @FindBy(name = "text")      public WebElement searchField;
-    @FindBy(name = "submit")    public WebElement searchBtn;
 
-    public RozetkaHeader (WebDriver webDriver) {
-        super(webDriver);
-    }
 
     public void clickSingninLink() {
-        clickElement(signinLink);
+        $(signinLink).click();
     }
-
     public String getSigninLinkText() {
-        return signinLink.getText();
+        return $(signinLink).getText();
+    }
+    public void verifyUserName(String name) {
+        $(userNameLink).shouldHave(text(name));
     }
 
     public void searchProduct(String productText) {
@@ -37,6 +39,5 @@ public class RozetkaHeader extends Page{
         searchField.sendKeys(Keys.RETURN);
         //searchField.sendKeys(Keys.ENTER); //doesn't work on MacOS
     }
-
 
 }
