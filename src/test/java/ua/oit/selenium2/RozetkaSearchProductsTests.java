@@ -15,6 +15,7 @@ import java.util.List;
  *
  * @author Oleg Tatarchuk
  */
+//TODO: After use Selenide framework tests in this suite doesn't work. To refactor.
 public class RozetkaSearchProductsTests extends TestBase {
     //Public variables
 
