@@ -1,7 +1,8 @@
 package ua.oit.selenium2.pages;
 
 /**
- * Created by Oleg on 14.07.2015.
+ * Interface for popups on the site.
+ *
  */
 public interface Popup {
 }

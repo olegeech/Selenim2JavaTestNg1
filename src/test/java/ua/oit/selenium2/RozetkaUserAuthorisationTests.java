@@ -9,10 +9,10 @@ import ua.oit.selenium2.pages.*;
  * @author Oleg Tatarchuk
  */
 public class RozetkaUserAuthorisationTests extends TestBase {
-    private RozetkaSignupPage signupPage             = new RozetkaSignupPage();
-    private RozetkaHeader header                     = new RozetkaHeader();
-    private RozetkaHeaderLoginPopup loginPopup       = new RozetkaHeaderLoginPopup();
-    private RozetkaPersonalDataPage personalDataPage = new RozetkaPersonalDataPage();
+    private RozetkaSignupPage signupPage;
+    private RozetkaHeader header;
+    private RozetkaHeaderLoginPopup loginPopup;
+    private RozetkaPersonalDataPage personalDataPage;
 
     @Test
     public void RozetkaRegisterUserAndVerifyLoginAndUserName() throws Exception {
@@ -20,10 +20,13 @@ public class RozetkaUserAuthorisationTests extends TestBase {
         String email    = "tatarchykoleg@gmail.com";
         String pwd      = "testPass";
 
-        signupPage.initPage();
+        signupPage = new RozetkaSignupPage();
         signupPage.registerNewUser(name, email, pwd);
-        loginPopup.login(email, pwd);
+        loginPopup = new RozetkaHeaderLoginPopup();
+        loginPopup.fillLoginFormAndClickLogin(email, pwd);
+        personalDataPage = new RozetkaPersonalDataPage();
         personalDataPage.verifyPersonalInformationIsDisplayed();
+        header = new RozetkaHeader();
         header.verifyUserName(name);
     }
 }

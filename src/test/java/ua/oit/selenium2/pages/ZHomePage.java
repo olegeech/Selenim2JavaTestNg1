@@ -67,7 +67,7 @@ public class ZHomePage extends Page {
     // Check that we're on the right page.
     String actualPageTitle = driver.getTitle();
     if (!actualPageTitle.contains(expectedPageTitle)) {
-      // Alternatively, we could navigate to the login page, perhaps logging out first
+      // Alternatively, we could navigate to the fillLoginFormAndClickLogin page, perhaps logging out first
       throw new IllegalStateException(
               "\n >> Expected page: "+expectedPageTitle+
                       "\n >> actual page:"+ actualPageTitle);

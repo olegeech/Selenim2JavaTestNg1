@@ -20,12 +20,15 @@ public class RozetkaHeaderLoginPopup extends RozetkaHeader implements Popup{
     public static By inputPassword  = By.name("password");
     public static By buttonLogin    = By.name("auth_submit");
 
-    public void login(String email, String pwd) {
+    public RozetkaHeaderLoginPopup () {
         if (getSigninLinkText().equals("войдите в личный кабинет")) {
-            clickSingninLink();
-            $(inputLogin).setValue(email);
-            $(inputPassword).setValue(pwd);
-            $(buttonLogin).click();
+            super.clickSingninLink();
         } else {System.out.println("\n >> User is already logged in \n");}
+    }
+
+    public void fillLoginFormAndClickLogin(String email, String pwd) {
+        $(inputLogin).setValue(email);
+        $(inputPassword).setValue(pwd);
+        $(buttonLogin).click();
     }
 }

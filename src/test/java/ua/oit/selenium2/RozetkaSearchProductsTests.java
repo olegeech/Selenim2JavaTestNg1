@@ -45,7 +45,8 @@ public class RozetkaSearchProductsTests extends TestBase {
 
     @Test (dataProvider = "product")
     public void RozetkaSearchProductAndCountProducts(String productText) throws Exception {
-        homePage.initPage();
+
+        homePage = new RozetkaHomePage();
 
         //search product
         header.searchProduct(productText);
@@ -67,8 +68,8 @@ public class RozetkaSearchProductsTests extends TestBase {
     @Test (dataProvider = "product")
     public void RozetkaSearchAndVerifyProductNameAddWishlist(String productText) throws Exception {
         //preconditions
-        homePage.initPage();
-        loginPopup.login("tatarchykoleg@gmail.com", "testPass");
+        homePage = new RozetkaHomePage();
+        loginPopup.fillLoginFormAndClickLogin("tatarchykoleg@gmail.com", "testPass");
 
         //search product
         header.searchProduct(productText);

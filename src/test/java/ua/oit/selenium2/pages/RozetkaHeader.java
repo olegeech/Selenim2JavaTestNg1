@@ -18,26 +18,27 @@ import static com.codeborne.selenide.Selenide.$;
  * @author Oleg Tatarchuk
  */
 public class RozetkaHeader extends Page{
-
-    public static By userNameLink = By.name("profile");
-    public static By signinLink = By.name("signin");
-    @FindBy(name = "text")      public WebElement searchField;
+    // Page locators
+    public static By userNameLink   = By.name("profile");
+    public static By signinLink     = By.name("signin");
+    public static By inputSearch    = By.name("text");
 
 
     public void clickSingninLink() {
         $(signinLink).click();
     }
+
     public String getSigninLinkText() {
         return $(signinLink).getText();
     }
+
     public void verifyUserName(String name) {
         $(userNameLink).shouldHave(text(name));
     }
 
     public void searchProduct(String productText) {
-        setElementText(productText, searchField);
-        searchField.sendKeys(Keys.RETURN);
-        //searchField.sendKeys(Keys.ENTER); //doesn't work on MacOS
+        $(inputSearch).setValue(productText);
+        $(inputSearch).sendKeys(Keys.RETURN);
     }
 
 }

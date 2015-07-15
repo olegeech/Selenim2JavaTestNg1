@@ -3,7 +3,6 @@ package ua.oit.selenium2.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -14,10 +13,6 @@ import java.util.List;
  * Created by Oleg on 11.06.2015.
  */
 public class RozetkaWishlistsPage extends Page {
-    public RozetkaWishlistsPage (WebDriver webDriver) {
-        super(webDriver);
-    }
-
     private final String pageUrl = "https://my.rozetka.com.ua/profile/wishlists/";
     private final String title = "ROZETKA — Списки желаний | Личный кабинет";
     private final String wishlistItemLinkXPath = "//div[@class='g-i-tile-i-title']";
@@ -29,11 +24,15 @@ public class RozetkaWishlistsPage extends Page {
     @FindBy(name = "wishlist-block-goods-item") public WebElement wishlistItem;
     @FindBy(xpath = wishlistItemLinkXPath)      public WebElement wishlistItemLink;
 
+    public RozetkaWishlistsPage () {
+        super.initPage(pageUrl, title);
+    }
+
 
     public String getPageUrl(){return pageUrl;}
 
     public void initPage (){
-        initPages(pageUrl, title);
+        initPage(pageUrl, title);
     }
 
     public void verifyIsGoodExist(String expectedGoodName) {

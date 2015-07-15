@@ -43,7 +43,7 @@ abstract public class Page {
         e.sendKeys(name);
     }
 
-    public void initPages(String pageUrl, String title) {
+    public void initPage(String pageUrl, String title) {
         open(pageUrl);
         assertEquals(title, title());
     }

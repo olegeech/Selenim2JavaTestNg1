@@ -11,6 +11,8 @@ import static com.codeborne.selenide.Selenide.$;
  * This class also in charge for interacting with web elements located on the page.
  * Use methods in this class for interact with this page or add new.
  *
+ * This page is init using constructor.
+ *
  * @author Oleg Tatarchuk
  */
 public class RozetkaSignupPage extends Page{
@@ -24,8 +26,8 @@ public class RozetkaSignupPage extends Page{
     public static By buttonReg        = byText("Зарегистрироваться");
     public static By registeredUserMessage = By.name("app-message");
 
-    public void initPage (){
-        initPages(pageUrl, title);
+    public RozetkaSignupPage() {
+        super.initPage(pageUrl, title);
     }
 
     public void registerNewUser(String name, String email, String pwd) {
